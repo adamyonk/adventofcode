@@ -5,13 +5,13 @@ import { getInput } from "../util/fetchAOC.js";
   try {
     let length = 0;
     // const input = `
-// 2199943210
-// 3987894921
-// 9856789892
-// 8767896789
-// 9899965678
-// `
-      const input = (await getInput(2021, 9))
+    // 2199943210
+    // 3987894921
+    // 9856789892
+    // 8767896789
+    // 9899965678
+    // `
+    const input = (await getInput(2021, 9))
       .trim()
       .split("\n")
       .flatMap((l) => {
@@ -20,10 +20,11 @@ import { getInput } from "../util/fetchAOC.js";
       });
 
     const getAdjacent = (index) => {
-      const west = index % length === 0 ? undefined : index - 1;
-      const east = index % length === length - 1 ? undefined : index + 1;
       const north = index < length ? undefined : index - length;
-      const south = input.length - index < length ? undefined : index + length;
+      const east = index % length === length - 1 ? undefined : index + 1;
+      const south =
+        input.length - 1 - index < length ? undefined : index + length;
+      const west = index % length === 0 ? undefined : index - 1;
 
       return [north, east, south, west];
     };
